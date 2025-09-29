@@ -60,6 +60,20 @@ describe('Json Placeholder (ReqRes API)', () => {
         .expectStatus(StatusCodes.BAD_REQUEST)
         .expectBodyContains('Missing password');
     });
+    it('deve falhar ao logar quando o email e senha estiver ausente', async () => {
+      await p
+        .spec()
+        .post(`${baseUrl}/login`)
+        .withHeaders({
+          'Content-Type': 'application/json',
+          'x-api-key': 'reqres-free-v1'
+        })
+        .withJson({
+         
+        })
+        .expectStatus(StatusCodes.BAD_REQUEST)
+        .expectBodyContains('Missing email or username or password');
+    });
 
 
   });
